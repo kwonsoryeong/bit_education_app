@@ -7,6 +7,12 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Profile from './components/Profile'
 
+import Notice from './components/compInList/Notice'
+import Vedio from './components/compInList/Vedio'
+import Homework from './components/compInList/Homework'
+import Question from './components/compInList/Question'
+
+
 class App extends Component {
   render() {
     return (
@@ -18,6 +24,11 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />
+
+            <Route exact path="/list/notice" component={Notice} />
+            <Route exact path="/list/video" component={Vedio} />
+            <Route exact path="/list/homework" component={Homework} />
+            <Route exact path="/list/question" component={Question} />
           </div>
         </div>
       </Router>

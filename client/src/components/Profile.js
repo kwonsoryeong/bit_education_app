@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
+import List from './compInList/List'
 
 class Profile extends Component {
   constructor() {
@@ -28,6 +29,13 @@ class Profile extends Component {
 
   render() {
     return (
+      <div className="inBody">
+        <List />
+        <div className="contents">  
+          {this.state.id}님 반갑습니다 ^^*
+        </div>
+      </div>
+      /* 디자인 참고
       <div className="container">
         <div className="jumbotron mt-5">
           <div className="col-sm-8 mx-auto">
@@ -42,7 +50,7 @@ class Profile extends Component {
             </tbody>
           </table>
         </div>
-      </div>
+      </div>*/
     )
   }
 }

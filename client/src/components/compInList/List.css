@@ -1,0 +1,17 @@
+.nav-item{
+    margin-top:15px;
+}
+
+.list{
+    display:inline-block;
+    width: 150px;
+    height: 150px;
+}
+.inBody{
+    margin : 0px;
+}
+.contents{
+    display:inline-block;
+    width: 400px;
+    height: 400px;
+}
