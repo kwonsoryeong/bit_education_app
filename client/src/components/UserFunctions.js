@@ -16,12 +16,13 @@ export const register = newUser => {
 
 export const login = user => {
   return axios
-    .post('users/login', {
+    .post('http://localhost:3004/users/login', {
       id: user.id,
       password: user.password
     })
     .then(response => {
-      //localStorage.setItem('usertoken', response.data)
+      console.log("뭘까? "+response.data);
+      localStorage.setItem('usertoken', response.data)
       return response.data
     })
     .catch(err => {

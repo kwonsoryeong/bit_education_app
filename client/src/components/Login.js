@@ -24,6 +24,7 @@ class Login extends Component {
       id: this.state.id,
       password: this.state.password
     }
+    console.log(user);
 
     login(user).then(res => {
       if (res) {

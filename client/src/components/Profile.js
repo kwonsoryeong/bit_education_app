@@ -5,8 +5,6 @@ class Profile extends Component {
   constructor() {
     super()
     this.state = {
-      /*first_name: '',
-      last_name: '',*/
       id: '',
       errors: {}
     }
@@ -14,12 +12,18 @@ class Profile extends Component {
 
   componentDidMount() {
     const token = localStorage.usertoken
-    const decoded = jwt_decode(token)
-    this.setState({
-      /*first_name: decoded.first_name,
-      last_name: decoded.last_name,*/
-      id: decoded.id
-    })
+    try {
+        const decoded = jwt_decode(token);
+        this.setState({
+          id: decoded.id
+        })
+        console.log(decoded);
+    }
+    catch (e) {
+        console.log(`error : `+e);
+    }
+    
+    
   }
 
   render() {
