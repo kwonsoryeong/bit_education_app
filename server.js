@@ -13,8 +13,18 @@ app.use(
 )
 
 var Users = require('./routes/Users')
+var Bulletins = require('./routes/Bulletins')
+var Bangs = require('./routes/Bangs')
+var Qnas = require('./routes/Qnas')
+var Homeworks = require('./routes/Homeworks')
+var Videos = require('./routes/Videos')
 
 app.use('/users', Users)
+app.use('/bulletins', Bulletins)
+app.use('/bangs', Bangs)
+app.use('/qnas', Qnas)
+app.use('/homeworks', Homeworks)
+app.use('/videos', Videos)
 
 app.listen(port, function() {
   console.log('Server is running on port: ' + port)

@@ -1,7 +1,25 @@
 import React, { Component } from 'react'
 import List from './List'
+import VideoList from '../videos/VideoList'
+import { Link } from 'react-router-dom'
 
-class Vedio extends Component {
+const Vedio = ({match}) => {
+  return (
+      <div className="inBody">
+        <List code={match.params.code}/>
+
+        <div className="contents">
+          <button>
+            <Link to={`/list/video/live/${match.params.code}`} className="list-link">
+              LIVE
+            </Link>
+          </button>
+          <VideoList code={match.params.code}/>
+        </div>
+      </div>
+    )
+}
+/*class Vedio extends Component {
   render() {
     return (
         <div className="inBody">
@@ -10,6 +28,6 @@ class Vedio extends Component {
       </div>
     )
   }
-}
+}*/
 
 export default Vedio

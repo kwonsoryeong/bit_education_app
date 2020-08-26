@@ -10,6 +10,9 @@ module.exports = db.sequelize.define(
     },
     password: {
       type: Sequelize.STRING(100)
+    },
+    bangList : {
+      type: Sequelize.JSON
     }
   },
   {

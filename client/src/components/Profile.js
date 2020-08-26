@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
 import List from './compInList/List'
+import BangList from './bangInList/BangList'
 
 class Profile extends Component {
   constructor() {
@@ -18,7 +19,7 @@ class Profile extends Component {
         this.setState({
           id: decoded.id
         })
-        console.log(decoded);
+        
     }
     catch (e) {
         console.log(`error : `+e);
@@ -30,7 +31,7 @@ class Profile extends Component {
   render() {
     return (
       <div className="inBody">
-        <List />
+        <BangList />
         <div className="contents">  
           {this.state.id}님 반갑습니다 ^^*
         </div>

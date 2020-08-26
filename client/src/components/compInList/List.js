@@ -6,22 +6,22 @@ class List extends Component {
     const linkList = (
       <ul className="navbar-nav">
         <li className="nav-item">
-          <Link to="/list/notice" className="list-link">
+          <Link to={`/list/notice/${this.props.code}`} className="list-link">
             공지
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/list/video" className="list-link">
+          <Link to={`/list/video/${this.props.code}`} className="list-link">
             영상
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/list/homework" className="list-link">
+          <Link to={`/list/homework/${this.props.code}`} className="list-link">
             과제
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/list/question" className="list-link">
+          <Link to={`/list/question/${this.props.code}`} className="list-link">
             질문
           </Link>
         </li>

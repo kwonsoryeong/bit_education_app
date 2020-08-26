@@ -1,7 +1,18 @@
 import React, { Component } from 'react'
 import List from './List'
+import QnaList from '../qnas/QnaList'
 
-class Question extends Component {
+const Question = ({match}) => {
+  return (
+        <div className="inBody">
+        <List code={match.params.code}/>
+        <div className="contents">
+        <QnaList code={match.params.code}/>
+      </div>
+      </div>
+    )
+}
+/*class Question extends Component {
   render() {
     return (
         <div className="inBody">
@@ -10,6 +21,6 @@ class Question extends Component {
       </div>
     )
   }
-}
+}*/
 
 export default Question

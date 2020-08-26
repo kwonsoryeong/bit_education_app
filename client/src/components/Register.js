@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import { register } from './UserFunctions'
 
@@ -30,9 +29,7 @@ class Register extends Component {
     }
     
     register(newUser).then(res => {
-      console.log('aa');
       this.props.history.push(`/login`);
-      console.log('bb');
     })
   }
 
