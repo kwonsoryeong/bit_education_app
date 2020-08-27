@@ -57,7 +57,6 @@ bulletins.post('/selectPost/:code', (req, res) => {
     }
   })
     .then(bulletins => {
-      console.log("얍얍 "+bulletins);
       res.send(bulletins);
       //res.json({ status: bulletin.idx + 'Registered!' })
     })

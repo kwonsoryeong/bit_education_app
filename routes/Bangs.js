@@ -32,9 +32,7 @@ bangs.post('/createBang', (req, res) => {
       if (!bang) {
         bcrypt.hash(req.body.title+req.body.adminId, 10, (err, hash) => {
           bangData.code = encodeURI(hash);
-          console.log(bangData.code);
           bangData.code = bangData.code.replace(/\//gi,'');
-          console.log(bangData.code);
           //*/
           Bang.create(bangData)
             .then(bang => {
@@ -45,12 +43,13 @@ bangs.post('/createBang', (req, res) => {
                     }
                 }).then(user =>
                     {
-                        let bl = user.bangList;
-                        let newBl;
-                        if(bl===''){
-                            newBl = {"bangs":[bang.idx]}
-                        }
-                        else{
+                      let newBl;
+                      
+                      if(JSON.parse(user.bangList) === null || JSON.parse(user.bangList) ===''){
+                        newBl = {"bangs":[bang.idx]}
+                      }  
+                      else{
+                          let bl = user.bangList;
                             bl = JSON.parse(user.bangList);
                             bl["bangs"].push(bang.idx);
                             newBl = (bl);
@@ -85,20 +84,35 @@ bangs.post('/createBang', (req, res) => {
 })
 bangs.post('/selectBang', (req, res) => {
     //console.log(req.body.adminId);
-  Bang.findAll({
-    where: {
-      adminId: req.body.adminId
+    User.findOne({
+      where: {
+        id : req.body.adminId
+      }
+    }).then(u => {
+      if(u === null || u===''){
+
+      }else{
+        let tmp = JSON.parse(u.bangList);
+        console.log("뺨 "+tmp["bangs"]);
+        Bang.findAll({
+          where: {
+            idx: tmp["bangs"]
+          }
+        })
+          .then(bangs => {
+            console.log("얍얍 "+bangs);
+            res.send(bangs);
+            //res.json({ status: bulletin.idx + 'Registered!' })
+          })
+          .catch(err => {
+            //console.log('error'+err);
+            res.send('error: ' + err)
+        })
     }
-  })
-    .then(bangs => {
-      console.log("얍얍 "+bangs);
-      res.send(bangs);
+      //res.send(bangs);
       //res.json({ status: bulletin.idx + 'Registered!' })
     })
-    .catch(err => {
-      //console.log('error'+err);
-      res.send('error: ' + err)
-  })
+  
 })
 bangs.post('/deleteBang', (req, res) => {
   //console.log("hello! "+req.body.idx);
