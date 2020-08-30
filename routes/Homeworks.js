@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt')
 const Homework = require('../models/Homework');
 homeworks.use(cors())
 
-process.env.SECRET_KEY = 'secret'
+//process.env.SECRET_KEY = 'secret'
 
 homeworks.post('/homeworkRegister', (req, res) => {
   //console.log(req);

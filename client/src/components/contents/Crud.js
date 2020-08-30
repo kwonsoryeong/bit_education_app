@@ -1,28 +1,41 @@
 import React, { Component } from 'react';
 import BoardForm from './Crud_BoardForm';
 import BoardItem from './Crud_BoardItem';
+import jwt_decode from 'jwt-decode'
 import axios from 'axios'
 /*
     component files.
 */
+let InputForm;
 class crud extends Component {
     state = {
         maxNo: 3,
+        bangOwner: '',
         boards: [
         ],
          selectedBoard:{}
     }
     componentDidMount() {
         try {
-            axios.post('http://localhost:3004/bulletins/selectPost/'+this.props.code)
+            
+            axios.post('http://localhost:3004/bulletins/selectPost/'+this.props.code, {
+                
+              })
                 .then(res => {
                     res.data.forEach(post => {
                         this.setState({
                             boards: this.state.boards.concat({...post })
                         });
                     });
-                })
-                
+                })   
+                axios.post('http://localhost:3004/bangs/findBangOwner/'+this.props.code)
+                  .then(res => {
+                    
+
+                    this.setState({
+                        bangOwner: res.data
+                    });
+            });      
         }
         catch (e) {
             console.log(`error : `+e);
@@ -68,12 +81,26 @@ class crud extends Component {
     }
     
     render() {
-        const { boards, selectedBoard } = this.state;
-
+        const { boards, selectedBoard, bangOwner } = this.state;
+        const saveData = this.handleSaveData;
+        const pro = this.props;
+        const token = localStorage.usertoken
+        const decoded = jwt_decode(token);
+       
+        function showOrNot(){
+            if(decoded.id === bangOwner){
+                return <BoardForm selectedBoard={selectedBoard} onSaveData={saveData} code={pro.code}/>
+            }
+            else{
+                
+            }
+        }
         return (
             <div>
-                <BoardForm selectedBoard={selectedBoard} onSaveData={this.handleSaveData} code={this.props.code}/>
-                <table border="1">
+                {
+                    showOrNot()
+                }
+                    <table border="1">
                     <tbody>
                     <tr align="center">
                         <td width="100">Title</td>

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import { qnaRegister } from './QnaFunctions'
+import axios from 'axios'
 
 class qna_BoardForm extends Component {
     
     shouldComponentUpdate(nextProps, nextState) {
         let selectedBoard = nextProps.selectedBoard;
-        console.log(selectedBoard);
         if (!selectedBoard.idx) {
             this.in_title.value = "";
             this.in_contents.value = "";        
@@ -25,13 +25,17 @@ class qna_BoardForm extends Component {
             title: this.in_title.value,
             contents: this.in_contents.value
         }
-        if (selectedBoard.idx) {
-            data.idx = selectedBoard.idx
-        }  
+        
         data.bangCode=this.props.code;
-        this.props.onSaveData(data);
-
-        qnaRegister(data).then(res => {
+        
+        axios.post('http://localhost:3004/qnas/qnaRegister', {
+          bangCode: data.bangCode,
+          title: data.title,
+          contents: data.contents
+        }).then(res => {
+            data.idx = res.data.idx;
+            
+            this.props.onSaveData(data, true);
             this.props.history.push(`/list/question/${data.bangCode}`);
         })
     }

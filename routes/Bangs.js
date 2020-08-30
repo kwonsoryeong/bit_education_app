@@ -44,7 +44,6 @@ bangs.post('/createBang', (req, res) => {
                 }).then(user =>
                     {
                       let newBl;
-                      
                       if(JSON.parse(user.bangList) === null || JSON.parse(user.bangList) ===''){
                         newBl = {"bangs":[bang.idx]}
                       }  
@@ -121,6 +120,16 @@ bangs.post('/deleteBang', (req, res) => {
       idx: req.body.idx
     }
   })  
+});
+bangs.post('/findBangOwner/:code', (req, res) => {
+  //console.log("hello! "+req.body.idx);
+  Bang.findOne({
+    where: {
+      code: req.params.code//req.body.idx
+    }
+  }).then(b => {
+    res.send(b.adminId);
+  })
 });
 
 module.exports = bangs

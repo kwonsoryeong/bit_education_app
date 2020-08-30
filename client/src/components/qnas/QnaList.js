@@ -14,7 +14,6 @@ class qnaList extends Component {
     }
     componentDidMount() {
         try {
-            console.log(this.props.code);
             axios.post('http://localhost:3004/qnas/selectQna/'+this.props.code)
                 .then(res => {
                     res.data.forEach(post => {
@@ -23,8 +22,6 @@ class qnaList extends Component {
                         });
                     });
                 })
-              
-                
         }
         catch (e) {
             console.log(`error : `+e);
@@ -33,18 +30,18 @@ class qnaList extends Component {
         
       }
     handleSaveData = (data) => {
-        if (!data.idx) {            // new : Insert
+        //if (!data.idx) {            // new : Insert
             this.setState({
                 maxNo: this.state.maxNo+1,
-                boards: this.state.boards.concat({idx: this.state.maxNo/*, brddate: new Date()*/, ...data }),
+                boards: this.state.boards.concat({idx: data.idx, ...data }),
                 selectedBoard: {}
             });
-        } else {                                                        // Update
+        /*} else {                                                 // Update
             this.setState({
                 boards: this.state.boards.map(row => data.idx === row.idx ? {...data }: row),
                 selectedBoard: {}
-            })            
-        }
+            })           
+        }*/ 
 
     }
     
@@ -66,8 +63,8 @@ class qnaList extends Component {
     handleSelectRow = (row) => {
         this.setState({selectedBoard:row});
     }
+
     componentDidUpdate(){
-        console.log("update!!");
     }
     
     render() {
@@ -78,13 +75,10 @@ class qnaList extends Component {
                 <BoardForm selectedBoard={selectedBoard} onSaveData={this.handleSaveData} code={this.props.code}/>
                 <table border="1">
                     <tbody>
-                    <tr align="center">
-                        <td width="100">Title</td>
-                        <td width="500">Contents</td>
-                    </tr>
+                    
                     {
                         boards.map(row =>
-                            (<BoardItem key={row.idx} row={row} onRemove={this.handleRemove} onSelectRow={this.handleSelectRow} />)
+                            (<BoardItem key={row.idx} row={row} onLoadComments={this.loadComments} onRemove={this.handleRemove} onSelectRow={this.handleSelectRow} />)
                         )
                     }
                     </tbody>

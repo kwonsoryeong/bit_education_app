@@ -8,10 +8,4 @@ export const qnaRegister = newQna => {
       title: newQna.title,
       contents: newQna.contents
     })
-    .then(response => {
-      console.log('Registered')
-    })
-    .catch(err => {
-        console.log(err)
-      })
 }
