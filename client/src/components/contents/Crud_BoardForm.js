@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import { postRegister } from './CrudFunctions'
+import {InputPost} from '../BoardStyles';
 
 class crud_BoardForm extends Component {
     
@@ -32,17 +33,23 @@ class crud_BoardForm extends Component {
         this.props.onSaveData(data);
 
         postRegister(data).then(res => {
-            this.props.history.push(`/list/notice/${data.bangCode}`);
+            //this.props.history.push(`/list/notice/${data.bangCode}`);
         })
     }
-    
+    constructor(props){
+        super(props);
+        this.in_title = null;
+        this.in_contents = null;
+        this.inputTitle = com => {
+            this.in_title = com;
+        };
+        this.inputContents = com => {
+            this.in_contents = com;
+        };
+    }
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input placeholder="title" ref={node => this.in_title = node}/>
-                <input placeholder="contents" ref={node => this.in_contents = node}/>
-                <button type="submit">Save</button>
-            </form>
+            <InputPost handleSubmit={this.handleSubmit} inputTitle={this.inputTitle} inputContents={this.inputContents} />
         );
     }
 }

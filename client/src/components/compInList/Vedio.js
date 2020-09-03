@@ -1,22 +1,18 @@
 import React, { Component } from 'react'
-import List from './List'
+import Listt from './List'
 import VideoList from '../videos/VideoList'
 import { Link } from 'react-router-dom'
 
 const Vedio = ({match}) => {
   return (
-      <div className="inBody">
-        <List code={match.params.code}/>
-
         <div className="contents">
           <button>
-            <Link to={`/list/video/live/${match.params.code}`} className="list-link">
+            <Link to={`/list/video/live/${localStorage.bangtoken}`} className="list-link">
               LIVE
             </Link>
           </button>
           <VideoList code={match.params.code}/>
         </div>
-      </div>
     )
 }
 /*class Vedio extends Component {

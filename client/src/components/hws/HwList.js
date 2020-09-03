@@ -14,6 +14,7 @@ class hwList extends Component {
     }
     componentDidMount() {
         try {
+            console.log( this.props.code );
             axios.post('http://localhost:3004/homeworks/selectHomework/'+this.props.code)
                 .then(res => {
                     res.data.forEach(hw => {
@@ -77,20 +78,14 @@ class hwList extends Component {
         return (
             <div>
                 <BoardForm selectedBoard={selectedBoard} onSaveData={this.handleSaveData} code={this.props.code}/>
-                <table border="1">
-                    <tbody>
-                    <tr align="center">
-                        <td width="100">Title</td>
-                        <td width="500">Contents</td>
-                    </tr>
                     {
                         boards.map(row =>
                             (<BoardItem key={row.idx} row={row} onRemove={this.handleRemove} onSelectRow={this.handleSelectRow} />)
                         )
                     }
-                    </tbody>
-                </table>
             </div>
+            
+
         );
     }
 }

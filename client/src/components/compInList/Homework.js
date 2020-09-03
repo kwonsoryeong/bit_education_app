@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
-import List from './List'
+import Listt from './List'
 import HwList from '../hws/HwList'
 
 const Homework = ({match}) => {
   return (
-    <div className="inBody">
-      <List code={match.params.code}/>
-      <div className="contents">
-      <HwList code={match.params.code}/>
-      </div>
+    <div className="contents">
+      <HwList code={localStorage.bangtoken}/>
     </div>
   )
 }

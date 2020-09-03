@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import { hwRegister } from './HwFunctions'
+import {InputPost} from '../BoardStyles';
 
 class hw_BoardForm extends Component {
     
     shouldComponentUpdate(nextProps, nextState) {
         let selectedBoard = nextProps.selectedBoard;
-        console.log(selectedBoard);
         if (!selectedBoard.idx) {
             this.in_title.value = "";
             this.in_contents.value = "";        
@@ -32,17 +32,23 @@ class hw_BoardForm extends Component {
         this.props.onSaveData(data);
 
         hwRegister(data).then(res => {
-            this.props.history.push(`/list/homework/${data.bangCode}`);
+            //this.props.history.push(`/list/homework/${data.bangCode}`);
         })
     }
-    
+    constructor(props){
+        super(props);
+        this.in_title = null;
+        this.in_contents = null;
+        this.inputTitle = com => {
+            this.in_title = com;
+        };
+        this.inputContents = com => {
+            this.in_contents = com;
+        };
+    }
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input placeholder="title" ref={node => this.in_title = node}/>
-                <input placeholder="contents" ref={node => this.in_contents = node}/>
-                <button type="submit">Save</button>
-            </form>
+            <InputPost handleSubmit={this.handleSubmit} inputTitle={this.inputTitle} inputContents={this.inputContents} />
         );
     }
 }

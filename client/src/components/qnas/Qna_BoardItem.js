@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import BoardItem from './QnaComment_BoardItem';
+import {BoardWithComments} from '../BoardStyles';
+
+import Grid from '@material-ui/core/Grid';
 
 class BoardRow extends Component {
     state = {
@@ -13,6 +16,7 @@ class BoardRow extends Component {
         onRemove(row.idx);
     }    
     handleCommentRemove = (idx) => {
+
         this.setState({
             comments: this.state.comments.filter(row => row.idx !== idx)
         })
@@ -82,33 +86,26 @@ class BoardRow extends Component {
             console.log(`error : `+e);
         }
      }
+    constructor(props){
+        super(props);
+        this.in_comment = null;
+        this.inputComment = com => {
+            this.in_comment = com;
+        };
+    }
 
     render() {
-
-
         return(
-            <tr>
-                    <td><a onClick={this.handleSelectRow}>{this.props.row.title}</a></td>
-                    <td>{this.props.row.contents}</td>
-               
-                    <td><button onClick={this.handleRemove}>X</button></td>
-                    <td>
-                        <p>
-                        {
-                            this.state.comments.map(row =>
-                                (<BoardItem idx={row.idx} row={row} onRemove={this.handleCommentRemove}/>)
-                            )
-                        }
-                        </p>
-                        <p>
-                        <form onSubmit={this.handleSubmit}>
-                            <input placeholder="comment" ref={node => this.in_comment = node} />
-                            <button type="submit">Save</button>
-                        </form>
-                        </p>
-                    </td>
-                    
-            </tr>
+            <div>
+                <form noValidate autoComplete="off">
+                <BoardWithComments title={this.props.row.title} contents={this.props.row.contents} 
+                handleSelectRow={this.handleSelectRow} handleRemove={this.handleRemove}
+                comments={this.state.comments} handleCommentRemove={this.handleCommentRemove} 
+                handleSubmit={this.handleSubmit} inputComment={this.inputComment}
+                />
+                </form>
+                <br></br><br></br>
+            </div>
                 
             
         );

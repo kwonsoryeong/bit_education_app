@@ -14,8 +14,7 @@ class videoList extends Component {
     }
     componentDidMount() {
         try {
-            console.log(this.props.code);
-            axios.post('http://localhost:3004/videos/selectVideo/'+this.props.code)
+            axios.post('http://localhost:3004/videos/selectVideo/'+localStorage.bangtoken)
                 .then(res => {
                     res.data.forEach(post => {
                         this.setState({
@@ -76,20 +75,12 @@ class videoList extends Component {
 
         return (
             <div>
-                <BoardForm selectedBoard={selectedBoard} onSaveData={this.handleSaveData} code={this.props.code}/>
-                <table border="1">
-                    <tbody>
-                    <tr align="center">
-                        <td width="100">Title</td>
-                        <td width="500">Contents</td>
-                    </tr>
-                    {
-                        boards.map(row =>
-                            (<BoardItem key={row.idx} row={row} onRemove={this.handleRemove} onSelectRow={this.handleSelectRow} />)
-                        )
-                    }
-                    </tbody>
-                </table>
+                <BoardForm selectedBoard={selectedBoard} onSaveData={this.handleSaveData} code={localStorage.bangtoken}/>
+                {
+                    boards.map(row =>
+                        (<BoardItem key={row.idx} row={row} onRemove={this.handleRemove} onSelectRow={this.handleSelectRow} />)
+                    )
+                }
             </div>
         );
     }

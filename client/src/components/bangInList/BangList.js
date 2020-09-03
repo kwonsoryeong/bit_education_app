@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
+import {BangL} from '../BoardStyles';
+import Button from '@material-ui/core/Button';
 
 class BangList extends Component {
     state = {
@@ -26,10 +28,13 @@ class BangList extends Component {
         }
         catch (e) {
             console.log(`error : `+e);
-        }
-        
-        
-      }
+        }    
+    }
+
+    saveCode(bangCode){
+        localStorage.setItem('bangtoken', bangCode)
+    }
+
     render() {
         
         return (
@@ -37,18 +42,17 @@ class BangList extends Component {
                 {
                     this.state.bangList.map((row,index) =>
                         (
-                        <li className="bang-item" key={index}>
-                        <Link to={`list/notice/${row.code}`}>
-                        {row.title}
-                        </Link>
-                        </li>)
+                        <BangL click={e => this.saveCode(row.code)}
+                        title={row.title}
+                        />
+                        )
                     )
                 }
-                <button>
-                    <Link to='/bang/createBang' className="list-link">
+                <Button type="submit" variant="contained" color="primary">
+                    <Link to='/bang/createBang' style={{ color : `white`}}>
                         방만들기
                     </Link>
-                </button>
+                </Button>
             </div>
         )
     }

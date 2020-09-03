@@ -6,7 +6,7 @@ import axios from 'axios'
 /*
     component files.
 */
-let InputForm;
+
 class crud extends Component {
     state = {
         maxNo: 3,
@@ -17,7 +17,7 @@ class crud extends Component {
     }
     componentDidMount() {
         try {
-            
+            console.log( this.props.code );
             axios.post('http://localhost:3004/bulletins/selectPost/'+this.props.code, {
                 
               })
@@ -100,19 +100,12 @@ class crud extends Component {
                 {
                     showOrNot()
                 }
-                    <table border="1">
-                    <tbody>
-                    <tr align="center">
-                        <td width="100">Title</td>
-                        <td width="500">Contents</td>
-                    </tr>
-                    {
-                        boards.map(row =>
-                            (<BoardItem key={row.idx} row={row} onRemove={this.handleRemove} onSelectRow={this.handleSelectRow} />)
-                        )
-                    }
-                    </tbody>
-                </table>
+                   
+                {
+                    boards.map(row =>
+                        (<BoardItem key={row.idx} row={row} onRemove={this.handleRemove} onSelectRow={this.handleSelectRow} />)
+                    )
+                }
             </div>
         );
     }

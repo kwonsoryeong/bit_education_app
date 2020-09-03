@@ -121,8 +121,18 @@ bangs.post('/deleteBang', (req, res) => {
     }
   })  
 });
+
+bangs.post('/findBangTitle', (req, res) => {
+  Bang.findOne({
+    where: {
+      code: req.body.code//req.body.idx
+    }
+  }).then(b => {
+    res.send(b.title);
+  })
+});
 bangs.post('/findBangOwner/:code', (req, res) => {
-  //console.log("hello! "+req.body.idx);
+  console.log(req.params);
   Bang.findOne({
     where: {
       code: req.params.code//req.body.idx

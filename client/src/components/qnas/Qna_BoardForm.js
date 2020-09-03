@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
-import { qnaRegister } from './QnaFunctions'
-import axios from 'axios'
+import { qnaRegister } from './QnaFunctions';
+import {InputPost} from '../BoardStyles';
+import axios from 'axios';
+
 
 class qna_BoardForm extends Component {
     
@@ -36,17 +38,24 @@ class qna_BoardForm extends Component {
             data.idx = res.data.idx;
             
             this.props.onSaveData(data, true);
-            this.props.history.push(`/list/question/${data.bangCode}`);
+            //this.props.history.push(`/list/question/${data.bangCode}`);
         })
     }
-    
+    constructor(props){
+        super(props);
+        this.in_title = null;
+        this.in_contents = null;
+        this.inputTitle = com => {
+            this.in_title = com;
+        };
+        this.inputContents = com => {
+            this.in_contents = com;
+        };
+    }
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input placeholder="title" ref={node => this.in_title = node}/>
-                <input placeholder="contents" ref={node => this.in_contents = node}/>
-                <button type="submit">Save</button>
-            </form>
+            <InputPost handleSubmit={this.handleSubmit} inputTitle={this.inputTitle} inputContents={this.inputContents} />
+            
         );
     }
 }

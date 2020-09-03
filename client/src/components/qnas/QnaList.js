@@ -73,16 +73,12 @@ class qnaList extends Component {
         return (
             <div>
                 <BoardForm selectedBoard={selectedBoard} onSaveData={this.handleSaveData} code={this.props.code}/>
-                <table border="1">
-                    <tbody>
                     
                     {
                         boards.map(row =>
                             (<BoardItem key={row.idx} row={row} onLoadComments={this.loadComments} onRemove={this.handleRemove} onSelectRow={this.handleSelectRow} />)
                         )
                     }
-                    </tbody>
-                </table>
             </div>
         );
     }

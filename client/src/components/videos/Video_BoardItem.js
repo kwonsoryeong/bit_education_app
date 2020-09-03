@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Board } from '../BoardStyles';
 
 class BoardRow extends Component {
     handleRemove = () => {
@@ -11,12 +12,14 @@ class BoardRow extends Component {
     }    
     render() {
         return(
-            <tr>
-                <td><a onClick={this.handleSelectRow}>{this.props.row.title}</a></td>
-                <td>{this.props.row.contents}</td>
-                
-                <td><button onClick={this.handleRemove}>X</button></td>
-            </tr>
+            <div>
+                <form noValidate autoComplete="off">
+                <Board title={this.props.row.title} contents={this.props.row.contents} 
+                handleSelectRow={this.handleSelectRow} handleRemove={this.handleRemove}
+                />
+                </form>
+                <br></br><br></br>
+            </div>
         );
     }
 }

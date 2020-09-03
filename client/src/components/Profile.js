@@ -31,10 +31,12 @@ class Profile extends Component {
   render() {
     return (
       <div className="inBody">
-        <BangList />
         <div className="contents">  
           {this.state.id}님 반갑습니다 ^^*
         </div>
+        <br/>
+        <BangList />
+        
       </div>
       /* 디자인 참고
       <div className="container">
