@@ -48,7 +48,7 @@ class BangList extends Component {
                         )
                     )
                 }
-                <Button type="submit" variant="contained" color="primary">
+                <Button type="submit" variant="contained" color="primary" style={{margin:30}}>
                     <Link to='/bang/createBang' style={{ color : `white`}}>
                         방만들기
                     </Link>

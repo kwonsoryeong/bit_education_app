@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Video from './Video'
 
 class Live extends Component {
   constructor() {
@@ -16,7 +17,7 @@ class Live extends Component {
   render() {
     return (
       <div className="container">
-        여기는 영상
+        <Video/>
       </div>
     )
   }

@@ -184,13 +184,15 @@ function BangL(props){
 function InputPost(props){
   const classes = useStyles();
   return(
+    
     <form onSubmit={props.handleSubmit} className={classes.root} noValidate autoComplete="off">
+        <br/>
         <OutlinedInput
           className={classes.TextField}
           fullWidth={true}
           label="title"
           id="mui-theme-provider-standard-input"
-          inputRef={props.inputTitle} /><br></br>
+          inputRef={props.inputTitle} />
         <OutlinedInput
           className={classes.TextField}
           fullWidth={true}
@@ -198,10 +200,11 @@ function InputPost(props){
           variant="outlined"
           id="mui-theme-provider-standard-input"
           inputRef={props.inputContents} />
-        <br></br>
+        
         <Grid container justify="flex-end">
           <Button type="submit" variant="contained" color="primary" > Save</Button>
         </Grid>
+        <br/>
       </form>
   )
 }

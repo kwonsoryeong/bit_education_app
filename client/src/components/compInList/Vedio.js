@@ -2,15 +2,16 @@ import React, { Component } from 'react'
 import Listt from './List'
 import VideoList from '../videos/VideoList'
 import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button'
 
 const Vedio = ({match}) => {
   return (
         <div className="contents">
-          <button>
-            <Link to={`/list/video/live/${localStorage.bangtoken}`} className="list-link">
+          <Button variant="contained" color="primary" style={{margin:30, width:`50%`}}>
+            <Link to={`/list/video/live`} className="list-link" style={{ color : `white`}}>
               LIVE
             </Link>
-          </button>
+          </Button>
           <VideoList code={match.params.code}/>
         </div>
     )

@@ -86,9 +86,9 @@ class Landing extends Component {
     const bangLink = (
       <ul className="navbar-nav">
         <li className="nav-item">
-          <Link to="/list" className="nav-link">
+          <div style={{ color: `white`,fontSize: 25,margin:2 }}>
             {this.state.bangTitle}
-          </Link>
+          </div>
         </li>
         <li className="nav-item">
         <div className="nav-link">

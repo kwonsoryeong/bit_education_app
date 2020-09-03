@@ -17,6 +17,7 @@ import Vedio from './Vedio'
 import Homework from './Homework'
 import Question from './Question'
 import BangHome from './BangHome'
+import Live from '../live/Live'
 import Grid from '@material-ui/core/Grid';
 
 import { BrowserRouter as Router} from 'react-router-dom'
@@ -25,7 +26,7 @@ import { BrowserRouter as Router} from 'react-router-dom'
 const useStyles = makeStyles({
   /*root: {
     width: 200,
-  },
+  },k
 });
 
 function bangOut() {
@@ -59,8 +60,8 @@ class Listt extends Component {
         
     <MemoryRouter initialEntries={['/']} initialIndex={0}>
     
-    <div>
-    <Grid container spacing={3} direction="row" justify="flex-start" alignItems="flex-start">
+    <div style={{width: 1300, margin:0}}>
+    <Grid container spacing={7} direction="row" justify="flex-start" alignItems="flex-start">
       <Grid item xs={3}>
       <Paper elevation={0}>
         <List aria-label="secondary mailbox folders">
@@ -94,6 +95,7 @@ class Listt extends Component {
         { <Route exact path="/list/video" component={Vedio} />}
         { <Route exact path="/list/homework" component={Homework} />}
         { <Route exact path="/list/question" component={Question} />}
+        { <Route exact path="/list/video/live" component={Live} />}
       </Grid>
       </Grid>
       </div>
